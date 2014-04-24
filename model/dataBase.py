@@ -3,12 +3,19 @@ __author__ = 'adria'
 #!/usr/bin/python
 
 import os.path
-#import owner.py el fitxer "owner" no es un .py i per tant encara no es pot importar...
 
 class dataBase:
     def __init__(self, rutaUsers="usuaris.txt", rutaComptes="comptes.txt"):
         self.rutaUsers = rutaUsers
         self.rutaComptes = rutaComptes
+
+    def creaUsers(self):
+        """Crea el fitxer d'usuaris"""
+        pass
+
+    def creaComptes(self):
+        """Crea el fitxer de comptes bancaries"""
+        pass
 
     def comprovaUsers(self):
         """Comprova que existeixi el fitxer on es guarden els usuaris"""
@@ -55,22 +62,22 @@ class dataBase:
             #llençar una excepcio
         return resultat
 
-    def afegeixUsuari(self, owner):
+    def afegeixUsuari(self, dni, nombre, apellidos):
         """Afegeix un usuari al fitxer d'usuaris sense comprovar que existeixi"""
         if self.comprovaUsers():
             with open(self.rutaUsers, 'a') as f:    #machaca tot el fitxer...
-                f.write(owner.dni+","+owner.nombre+","+owner.apellidos+"\n")
+                f.write(dni+","+nombre+","+apellidos+"\n")
         else:
             print("Error! no s'ha trobat el fitxer d'usuaris")
 
-    def esborraUsuari(self, owner):
+    def esborraUsuari(self, dni):
         """Esborra un usuari al fitxer d'usuaris sense comprovar que existeixi"""
         if self.comprovaUsers():
             llista = self.llistaUsers()
             n = 0
             trobat = False
             for linia in llista:
-                if linia[0] == owner.dni:
+                if linia[0] == dni:
                     llista.pop(n)
                     trobat = True
                     break

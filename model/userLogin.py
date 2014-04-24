@@ -1,23 +1,19 @@
 __author__ = 'adria'
 
 #!/usr/bin/python
+
+import dataBase #no mel agafa...
+#import owner el fitxer "owner" no es un .py i per tant encara no es pot importar...
+
 class UserLogin:
-    def __init__(self, usuari, rutafitxer):
-        self.usuari = usuari
-        self.rutafitxer = rutafitxer
+    def __init__(self, dni, nom):
+        self.dni = dni
+        self.nom = nom
+        self.db = dataBase()
 
 
-
-    def comprovaFitxer(self):
-        """Comprova que existeixi el fitxer on es guarden els usuaris"""
-        pass
-
-    def creaFitxer(self):
-        """Crea el fitxer en la ruta 'rutafitxer' """
-        pass
-
-    def llegeixLog(self):
-        """Llegeix el log sencer"""
+    def login(self):
+        """Comproba que l'usuari (nom i dni) esigui en la bbdd i autentifica l'usuari"""
         pass
 
     def llistaUsuaris(self):
@@ -28,10 +24,6 @@ class UserLogin:
         """Comprova que existeixi l'usuari actual (self.usuari)"""
         pass
 
-    def guardaUsuari(self):
+    def guardaUsuari(self, owner):
         """Guarda en el fitxer l'usuari actual (self.usuari)"""
-        pass
-
-    def validaContrasenya(self, contrasenya):
-        """Comprova la contrasenya de l'usuari"""
         pass
