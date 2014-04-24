@@ -58,8 +58,8 @@ class dataBase:
     def afegeixUsuari(self, owner):
         """Afegeix un usuari al fitxer d'usuaris sense comprovar que existeixi"""
         if self.comprovaUsers():
-            with open(self.rutaUsers, 'w') as f:    #machaca tot el fitxer...
-                f.write(owner.dni+","+owner.nombre+","+owner.apellidos)
+            with open(self.rutaUsers, 'a') as f:    #machaca tot el fitxer...
+                f.write(owner.dni+","+owner.nombre+","+owner.apellidos+"\n")
         else:
             print("Error! no s'ha trobat el fitxer d'usuaris")
 
@@ -78,5 +78,7 @@ class dataBase:
             if (not trobat):
                 print("No s'ha trobat l'usuari!")
                 #error
+            else:
+                pass #escriure la llista actualitzada
         else:
             print("Error! no s'ha trobat el fitxer d'usuaris")
