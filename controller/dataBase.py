@@ -5,7 +5,7 @@ __author__ = 'adria'
 import os.path
 
 class DataBase:
-    def __init__(self, rutaUsers="usuaris.txt", rutaComptes="comptes.txt"):
+    def __init__(self, rutaUsers="../database/usuaris.txt", rutaComptes="../database/comptes.txt"):
         self.rutaUsers = rutaUsers
         self.rutaComptes = rutaComptes
 
@@ -100,4 +100,4 @@ class DataBase:
                 print("No s'ha trobat l'usuari!")
                 #error
         else:
-            print("Error! no s'ha trobat el fitxer
+            print("Error! no s'ha trobat el fitxer")
