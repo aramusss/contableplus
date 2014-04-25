@@ -10,12 +10,18 @@ class dataBase:
         self.rutaComptes = rutaComptes
 
     def creaUsers(self):
-        """Crea el fitxer d'usuaris"""
-        pass
+        """Creates users file"""
+        if self.comprovaUsers():
+            print("Users' file already exists!")
+        else:
+            open(self.rutaUsers, 'w').close()
 
     def creaComptes(self):
-        """Crea el fitxer de comptes bancaries"""
-        pass
+        """Creates accounts file"""
+        if self.comprovaComptes():
+            print("Accounts file already exists!")
+        else:
+            open(self.rutaComptes, 'w').close()
 
     def comprovaUsers(self):
         """Comprova que existeixi el fitxer on es guarden els usuaris"""
@@ -27,7 +33,7 @@ class dataBase:
     def comprovaComptes(self):
         """Comprova que existeixi el fitxer on es guarden les comptes bancaries"""
         result = False
-        if os.path.isfile(self.rutaUsers):
+        if os.path.isfile(self.rutaComptes):
             result = True
         return result
 
@@ -49,6 +55,8 @@ class dataBase:
         llistacomes = text.split("\n")
         for linia in llistacomes:
             llista.append(linia.split(","))
+        llista.pop()
+        #fer alguna cosa si no troba usuaris?
         return llista
 
     def llegeixComptes(self):
@@ -65,7 +73,7 @@ class dataBase:
     def afegeixUsuari(self, dni, nombre, apellidos):
         """Afegeix un usuari al fitxer d'usuaris sense comprovar que existeixi"""
         if self.comprovaUsers():
-            with open(self.rutaUsers, 'a') as f:    #machaca tot el fitxer...
+            with open(self.rutaUsers, 'a') as f:
                 f.write(dni+","+nombre+","+apellidos+"\n")
         else:
             print("Error! no s'ha trobat el fitxer d'usuaris")
@@ -73,19 +81,20 @@ class dataBase:
     def esborraUsuari(self, dni):
         """Esborra un usuari al fitxer d'usuaris sense comprovar que existeixi"""
         if self.comprovaUsers():
-            llista = self.llistaUsers()
-            n = 0
+            file = open(self.rutaUsers, 'r')
+            llista = file.readlines()
+            file.close
             trobat = False
-            for linia in llista:
-                if linia[0] == dni:
-                    llista.pop(n)
-                    trobat = True
-                    break
-                n = n+1
+            with open(self.rutaUsers, 'w') as file:
+                for linia in llista:
+                    print(linia.split(",")[0])
+                    print("---")
+                    if linia.split(",")[0] != dni:
+                        file.write(linia)
+                    else:
+                        trobat = True
             if (not trobat):
                 print("No s'ha trobat l'usuari!")
                 #error
-            else:
-                pass #escriure la llista actualitzada
         else:
             print("Error! no s'ha trobat el fitxer d'usuaris")
