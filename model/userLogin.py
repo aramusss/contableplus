@@ -28,8 +28,8 @@ class UserLogin:
         if dni == None:
             dni = self.owner.dni
         exists = False
-        for dni in self.llistaDNI():
-            if dni == dni:
+        for dniactual in self.llistaDNI():
+            if dniactual == dni:
                 exists = True
         return exists
 
@@ -40,5 +40,5 @@ class UserLogin:
         if self.existeixUsuari(owner.dni):
             print("User "+owner.dni+" already exists!")
         else:
-            self.db.afegeixUsuari(self, owner.dni, owner.nombre, owner.apellidos)
+            self.db.afegeixUsuari(owner.dni, owner.nombre, owner.apellidos)
             print("Usuari afegit!")
