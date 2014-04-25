@@ -8,7 +8,7 @@ from dataBase import *
 class UserLogin:
     def __init__(self, owner):
         self.owner = owner
-        self.db = dataBase()
+        self.db = DataBase()
 
 
     def login(self):
@@ -23,14 +23,22 @@ class UserLogin:
             llista.append(user[0])
         return llista
 
-    def existeixUsuari(self, usuari = self.owner.dni):
+    def existeixUsuari(self, dni = None):
         """Checks if a user exists by searching the DNI in the database"""
+        if dni == None:
+            dni = self.owner.dni
         exists = False
         for dni in self.llistaDNI():
-            if dni == usuari:
+            if dni == dni:
                 exists = True
         return exists
 
-    def guardaUsuari(self, owner):
-        """Guarda en el fitxer l'usuari actual (self.usuari)"""
-        pass
+    def guardaUsuari(self, owner=None):
+        """Saves owner to the database if it doesn't exist"""
+        if owner == None:
+            owner = self.owner
+        if self.existeixUsuari(owner.dni):
+            print("User "+owner.dni+" already exists!")
+        else:
+            self.db.afegeixUsuari(self, owner.dni, owner.nombre, owner.apellidos)
+            print("Usuari afegit!")

@@ -4,7 +4,7 @@ __author__ = 'adria'
 
 import os.path
 
-class dataBase:
+class DataBase:
     def __init__(self, rutaUsers="usuaris.txt", rutaComptes="comptes.txt"):
         self.rutaUsers = rutaUsers
         self.rutaComptes = rutaComptes
@@ -83,7 +83,7 @@ class dataBase:
         if self.comprovaUsers():
             file = open(self.rutaUsers, 'r')
             llista = file.readlines()
-            file.close
+            file.close()
             trobat = False
             with open(self.rutaUsers, 'w') as file:
                 for linia in llista:
