@@ -15,9 +15,6 @@ while(boolean):
         owner_curr=input('input the 3 letters of the currency')
         owner_money=converter.convert_to_locale(owner_money)
     boolean=converter.set_locale(owner_curr)
-
-
-
 converter.set_locale(receiver_curr)
 owner_money=converter.convert_to_locale(owner_money)
 receiver_money=owner_money+receiver_money
