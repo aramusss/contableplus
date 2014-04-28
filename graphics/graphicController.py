@@ -6,8 +6,9 @@ import datetime
 #DNI;IBAN;DATE(24/02/2014);+/-IMPORT
 
 class GraphicController:
+
     def showGrapicWithDNI(self, inputDni):
-        filePath = "./database/log.txt"
+        filePath = "../database/log.txt"
 
         maxMoney = 0
         startDate = datetime.datetime(2014, 1, 1)
@@ -25,8 +26,8 @@ class GraphicController:
 
                     #if(dni == inputDni):
 
-                    if money > maxMoney:
-                        maxMoney = money
+                    if int(money) > maxMoney:
+                        maxMoney = int(money)
                     if dateTime > maxDate:
                         maxDate = dateTime
 
@@ -44,7 +45,7 @@ class GraphicController:
 
         screen.tracer(100)
 
-        file = open("./database/log.txt", "r")
+        file = open("../database/log.txt", "r")
 
         for line in file:
             dni, iban, date, money = line.split(";")
@@ -57,6 +58,9 @@ class GraphicController:
 
             dateDiff = dateTime - startDate
 
-            t.goto(dateDiff.days, money)
+            t.goto(dateDiff.days, int(money))
         screen.update()
         screen.exitonclick()
+
+myTest = GraphicController()
+myTest.showGrapicWithDNI("11111111A")
