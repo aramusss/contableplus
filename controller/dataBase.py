@@ -74,11 +74,14 @@ class DataBase:
         """Afegeix un usuari al fitxer d'usuaris sense comprovar que existeixi"""
         added = False
         if self.comprovaUsers():
-            with open(self.rutaUsers, 'a') as f:
-                f.write(dni+","+nombre+","+apellidos+"\n")
-                added = True
+            if dni and nombre and apellidos:
+                with open(self.rutaUsers, 'a') as f:
+                    f.write(dni+","+nombre+","+apellidos+"\n")
+                    added = True
+            else:
+                print("Error, a user can't have empty fields")
         else:
-            print("Error! no s'ha trobat el fitxer d'usuaris")
+            print("Error! couldn't find users file")
         return added
 
     def esborraUsuari(self, dni):
@@ -90,13 +93,11 @@ class DataBase:
             trobat = False
             with open(self.rutaUsers, 'w') as file:
                 for linia in llista:
-                    print(linia.split(",")[0])
-                    print("---")
                     if linia.split(",")[0] != dni:
                         file.write(linia)
                     else:
                         trobat = True
-            if (not trobat):
+            if not trobat:
                 print("No s'ha trobat l'usuari!")
                 #error
         else:
