@@ -150,3 +150,24 @@ class DataBase:
         else:
             print("Error: could not find bank accounts' file")
         return added
+
+    def modificaCompta(self, ibanInput, newAmount):
+        accountList = []
+        ibanExists = False
+        filePath = '../database/comptes.txt'
+        with open(filePath, 'r') as accounts:
+            for line in accounts:
+                cuenta = line.split(",")
+                if(cuenta[0] == ibanInput):
+                    cuenta[1] = str(int(cuenta[1]) + newAmount)
+                    changedLine = ','.join(cuenta)
+                    accountList.append(changedLine)
+                else:
+                    accountList.append(line)
+            with open(filePath, 'w') as accounts:
+                for item in accountList:
+                    if(item != ''):
+                        accounts.write(item)
+
+proba = DataBase()
+proba.modificaCompta('ES7620770024003102575766', +12000004)
