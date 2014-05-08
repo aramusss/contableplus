@@ -2,7 +2,7 @@ __author__ = 'adria'
 
 #!/usr/bin/python
 
-import os.path
+import os.path, random
 
 class DataBase:
     def __init__(self, rutaUsers="../database/usuaris.txt", rutaComptes="../database/comptes.txt"):
@@ -125,8 +125,9 @@ class DataBase:
         return list
 
     def afegeixCompta(self, iban, balance, currency, *owners):
-        """Adds a new bank account, all filds are mandatory"""
-        #comprovar que tots els owners existeixin?
+        """Adds a new bank account, all fields are mandatory except for iban code"""
+        if not iban:
+            iban = self.getRandomIban() #creates a random iban code
         added = False
         ibanExists = False
         if self.comprovaComptes():
@@ -169,5 +170,32 @@ class DataBase:
                     if(item != ''):
                         accounts.write(item)
 
+    def esborraCompta(self, iban):
+        """Removes an account with the selected IBAN code"""
+        if self.comprovaComptes():
+            file = open(self.rutaComptes, 'r')
+            llista = file.readlines()
+            file.close()
+            trobat = False
+            with open(self.rutaComptes, 'w') as file:
+                for linia in llista:
+                    if linia.split(",")[0] != iban:
+                        file.write(linia)
+                    else:
+                        trobat = True
+            if not trobat:
+                print("Couldn't find account "+iban)
+        else:
+            print("Error! Accounts file doesn't exist")
+
+    def getRandomIban(self):
+        """ Returns a random IBAN code that doesn't exist on the database"""
+        iban = "ES"
+        for n in range(22):
+            iban += str(random.randrange(10))
+        if iban in self.llistaIBAN():
+            iban = self.getRandomIban()
+        return iban
+
 proba = DataBase()
-proba.modificaCompta('ES7620770024003102575766', +12000004)
+proba.modificaCompta('ES7620770024003102575766', +333)
