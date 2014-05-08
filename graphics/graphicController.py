@@ -7,10 +7,12 @@ import datetime
 
 class GraphicController:
 
-    def showGrapicWithDNI(self, inputDni):
+    def showGrapicWithDNI(self, inputIban):
         filePath = "../database/log.txt"
 
+        actualMoney = 0
         maxMoney = 0
+        minMoney = 0
         startDate = datetime.datetime(2014, 1, 1)
         maxDate = startDate
 
@@ -24,12 +26,14 @@ class GraphicController:
 
                     dateTime = datetime.datetime(year, month, day)
 
-                    #if(dni == inputDni):
+                    if(iban == inputIban):
+                        if int(money) > maxMoney:
+                            maxMoney = int(money) + maxMoney
+                        if dateTime > maxDate:
+                            maxDate = dateTime
+                        if int(money) < minMoney:
+                            minMoney = int(money)
 
-                    if int(money) > maxMoney:
-                        maxMoney = int(money)
-                    if dateTime > maxDate:
-                        maxDate = dateTime
 
         dateDiff = maxDate - startDate
 
@@ -39,28 +43,35 @@ class GraphicController:
 
         screen = t.getscreen()
 
-        screen.setworldcoordinates(0,0,totalDays, maxMoney)
+        screen.setworldcoordinates(0, minMoney, totalDays, maxMoney)
 
-        t.goto(0,0)
+        t.goto(minMoney, 0)
 
         screen.tracer(100)
+
+        t.color("#7D7EC0")
+        t.fillcolor("#7D7EC0")
+        t.begin_fill()
 
         file = open("../database/log.txt", "r")
 
         for line in file:
             dni, iban, date, money = line.split(";")
-
+            actualMoney = actualMoney + int(money)
             day = int(date[0:2])
             month = int(date[3:5])
             year = int(date[6:10])
+            if iban == inputIban:
+                dateTime = datetime.datetime(year, month, day)
+                dateDiff = dateTime - startDate
 
-            dateTime = datetime.datetime(year, month, day)
+            t.goto(dateDiff.days, actualMoney)
+        t.goto(totalDays, 0)
+        t.goto(minMoney, 0)
+        t.end_fill()
 
-            dateDiff = dateTime - startDate
-
-            t.goto(dateDiff.days, int(money))
         screen.update()
         screen.exitonclick()
 
 myTest = GraphicController()
-myTest.showGrapicWithDNI("11111111A")
+myTest.showGrapicWithDNI("123123123")
