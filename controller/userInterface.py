@@ -11,9 +11,11 @@ currentUser.enterLogin()
 if(currentUser.registered):
     print("What do you want to do?")
     #list ibans
-
+    print("List of available accounts:")
+    ibanList = currentUser.getIbanList()
+    for iban in ibanList:
+        print(iban)
     #select one iban
 
-elif:
-
-
+else:
+    pass
