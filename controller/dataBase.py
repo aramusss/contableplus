@@ -197,5 +197,16 @@ class DataBase:
             iban = self.getRandomIban()
         return iban
 
+    def getAccount(self,iban):
+        """Returns a list cointaining all the account's data of the selected iban
+        If the iban code is not on the database, returns an empty list """
+        account = []
+        accountsList = self.llistaComptes()
+        for a in accountsList:
+            if a[0]==iban:
+                account = a
+                break
+        return account
+
 proba = DataBase()
 proba.modificaCompta('ES7620770024003102575766', +333)
