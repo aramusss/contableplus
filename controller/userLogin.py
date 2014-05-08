@@ -105,3 +105,14 @@ class UserLogin:
                 print("User "+owner.nombre+" added!")
             else:
                 print("User could not be added")
+
+    def getIbanList(self):
+        """Returns a list of the IBAN codes of the owners' accounts"""
+        llista = self.db.llistaComptes()
+        ibanList = []
+        for account in llista:
+            for user in account[3:]:
+                if user == self.owner.dni:
+                    ibanList.append(account[0])
+                    break
+        return ibanList
