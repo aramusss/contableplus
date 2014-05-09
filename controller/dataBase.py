@@ -206,6 +206,3 @@ class DataBase:
                 account = a
                 break
         return account
-
-proba = DataBase()
-proba.modificaCompta('ES7620770024003102575766', +333)

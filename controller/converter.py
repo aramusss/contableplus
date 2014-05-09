@@ -1,13 +1,11 @@
 import urllib.request
 class converter:
     localCurrency='EUR'
-    localAmount=0.00
     amount=0.00
     currencies='../database/currencies.txt'
     def set_amount(self, money):
         self.amount=money
-    def set_localAmount(self, locAmount):
-        self.localAmount=locAmount
+
     def get_locale(self):
         return self.localCurrency
     def set_locale(self,currency):

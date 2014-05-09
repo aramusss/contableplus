@@ -2,6 +2,7 @@ __author__ = 'aram'
 
 from userLogin import *
 from dataBase import *
+from operations import *
 import os.path, random
 
 
@@ -36,8 +37,10 @@ if(currentUser.registered):
             myTest = GraphicController()
             myTest.showGrapicWithDNI(currentIban)
         if(option == 2):
-            #MONELL DO UR STUFF BRO :)
-            print("monell monell monell monell :)")
+            money_input=input("how much money will you put?")
+            curr_input=input("and what currency is it?")
+            new_money=[float(money_input),curr_input]
+            operations=operations(currentIban, new_money)
         if(option == 3):
             # I BET U CAN'T...
             print("other thing..")
@@ -47,8 +50,8 @@ if(currentUser.registered):
         if createOne == "Y":
             print("Lets create an account.")
             registerAcc = DataBase()
-            amount = input("Insert your diposit: ")
             currency = "EUR"
+            amount = input("Insert your diposit: ")
             owner = currentUser.getOwner()
             dni = owner.getDni()
             print(dni)
