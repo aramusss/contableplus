@@ -2,21 +2,14 @@ import os.path
 import time
 
 class Log:
-    def __init__(self, dni, iban, data, saldo):
+    def __init__(self, dni, iban, saldo):
         self.dni = dni
         self.iban = iban
-        self.data = data
         self.saldo = saldo
-
-    def muestraDatos(self):
-        return [self.dni, self.iban, self.data, self.saldo]
-
-
-class Logger:
-    #funcion file
-    def __init__(self):
         self.file = "../database/log.txt"
 
+    def muestraDatos(self):
+        return [self.dni, self.iban, self.saldo]
 
     def comprovaLog(self):
         """Comprova que existeixi el fitxer on es guarden els logs"""
@@ -36,22 +29,14 @@ class Logger:
 
 
 #controlar que se introduzca un iban
-    def addLog(self, dni, iban, saldo):
+    def addLog(self):
         if self.comprovaLog():
             with open(self.file, mode='a', encoding='UTF-8') as f:
                 data = time.strftime("%d/%m/%Y")
-                f.write(dni+";"+iban+";"+data+";"+saldo+"\n")
+                f.write(str(self.dni)+";"+str(self.iban)+";"+str(data)+";"+str(self.saldo)+"\n")
         else:
             print("Error, dni can't have empty fields")
         #return added
-
-
-
-func1 = Logger()
-func1.addLog("14270390V", "4213412341", "-2454")
-
-
-
 #
 # entrada = 0
 # print("Introduce una opción de Menú:")

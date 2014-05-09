@@ -3,6 +3,8 @@ __author__ = 'aram'
 from userLogin import *
 from dataBase import *
 from operations import *
+sys.path.insert(0, '../graphics')
+from graphicController import *
 import os.path, random
 
 

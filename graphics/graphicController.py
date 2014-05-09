@@ -27,12 +27,12 @@ class GraphicController:
                     dateTime = datetime.datetime(year, month, day)
 
                     if(iban == inputIban):
-                        if int(money) > maxMoney:
-                            maxMoney = int(money) + maxMoney
+                        if float(money) > maxMoney:
+                            maxMoney = float(money) + maxMoney
                         if dateTime > maxDate:
                             maxDate = dateTime
-                        if int(money) < minMoney:
-                            minMoney = int(money)
+                        if float(money) < minMoney:
+                            minMoney = float(money)
 
 
         dateDiff = maxDate - startDate
@@ -57,7 +57,7 @@ class GraphicController:
 
         for line in file:
             dni, iban, date, money = line.split(";")
-            actualMoney = actualMoney + int(money)
+            actualMoney = actualMoney + float(money)
             day = int(date[0:2])
             month = int(date[3:5])
             year = int(date[6:10])

@@ -1,5 +1,6 @@
 from converter import *
 from dataBase import *
+from logger import *
 
 
 class Operations:
@@ -39,6 +40,8 @@ class Operations:
                 print("Wrong key")
         self.money_transfered[0]=self.converter.convert_to_locale(self.money_transfered)
         self.converter.set_locale('EUR')
-        self.money_transfered[0]=self.converter.convert_to_locale(self.money_transfered)
-        self.dataBase.modificaCompta(self.iban, self.money_transfered[0])
+        self.money_transfered[0]=float(self.converter.convert_to_locale(self.money_transfered))
+        self.dataBase.modificaCompta(self.iban, float(self.money_transfered[0]))
+        log = Log(self.dni, self.iban, self.money_transfered[0])
+        log.addLog()
         print('operation succeded')
