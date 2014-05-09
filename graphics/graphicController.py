@@ -72,6 +72,3 @@ class GraphicController:
 
         screen.update()
         screen.exitonclick()
-
-myTest = GraphicController()
-myTest.showGrapicWithDNI("123123123")

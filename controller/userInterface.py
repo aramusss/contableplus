@@ -4,6 +4,7 @@ from userLogin import *
 from dataBase import *
 import os.path, random
 
+
 #This class will be the one that controls
 #the inputs and outputs for the user interface.
 
@@ -19,9 +20,27 @@ if(currentUser.registered):
         print("List of available accounts:")
         for iban in ibanList:
             print(iban)
-        #select one iban
-            input("Select one IBAN:")
+        #select one iban, that we will be working on.
+        currentIbanOption =input("Select one IBAN:")
+        currentIban = ibanList[int(currentIbanOption)-1]
+        #if currentIban is correct, should display options to do:
+        print("1: Show Graphics from this account")
+        #Show graphics
+        print("2: Add or Withdraw money")
+        #Add or withdraw money
+        print("3: Add another Owner")
+        #Add another owner(?)
+        option = input("Select an option: ")
 
+        if(option == 1):
+            myTest = GraphicController()
+            myTest.showGrapicWithDNI(currentIban)
+        if(option == 2):
+            #MONELL DO UR STUFF BRO :)
+            print("monell monell monell monell :)")
+        if(option == 3):
+            # I BET U CAN'T...
+            print("other thing..")
     else:
         print("Would you like to create one?")
         createOne = input("Y/N: ")
@@ -33,8 +52,8 @@ if(currentUser.registered):
             owner = currentUser.getOwner()
             dni = owner.getDni()
             print(dni)
+            #this creates a new account.
             registerAcc.afegeixCompta(amount, currency, dni)
-
 
 else:
     pass
