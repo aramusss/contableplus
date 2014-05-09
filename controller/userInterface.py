@@ -2,7 +2,6 @@ __author__ = 'aram'
 
 from userLogin import *
 from dataBase import *
-from operations import *
 import os.path, random
 
 
@@ -33,15 +32,17 @@ if(currentUser.registered):
         #Add another owner(?)
         option = input("Select an option: ")
 
-        if(option == 1):
+        if(option == "1"):
             myTest = GraphicController()
             myTest.showGrapicWithDNI(currentIban)
-        if(option == 2):
+        if(option == "2"):
             money_input=input("how much money will you put?")
             curr_input=input("and what currency is it?")
             new_money=[float(money_input),curr_input]
-            operations=operations(currentIban, new_money)
-        if(option == 3):
+            currentOwner = currentUser.getOwner()
+            currentDni = currentOwner.getDni()
+            operations= Operations(currentIban, new_money, currentDni)
+        if(option == "3"):
             # I BET U CAN'T...
             print("other thing..")
     else:

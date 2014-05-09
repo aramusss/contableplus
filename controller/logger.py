@@ -38,34 +38,33 @@ class Logger:
 #controlar que se introduzca un iban
     def addLog(self, dni, iban, data, saldo):
         if self.comprovaLog():
-                with open(self.file, mode='a', encoding='UTF-8') as f:
-                    f.write(dni+";"+iban+";"+data+";"+saldo+"\n")
-                    #added = True
-                    print(dni + data)
+            with open(self.file, mode='a', encoding='UTF-8') as f:
+                f.write(dni+";"+iban+";"+data+";"+saldo+"\n")
+
         else:
             print("Error, dni can't have empty fields")
         #return added
 
-
-entrada = 0
-print("Introduce una opción de Menú:")
-print("1-Muestra log por dni:")
-print("2-Añade un log:")
-
-
-entrada = int(input("Introduce un número del menú:"))
-
-while (entrada < 2):
-    #programa 1
-    if (entrada == 1):
-        #1 muestra
-        func1 = Logger()
-        func1.muestraLog("22222222B")
-        break
-
-    if (entrada == 2):
-        #2 añade
-        func2 = Log("14270390V", "05/10/2010", "4213412341", "321231")
-        func1 = Logger()
-        func1.addLog(func2)
-        break
+#
+# entrada = 0
+# print("Introduce una opción de Menú:")
+# print("1-Muestra log por dni:")
+# print("2-Añade un log:")
+#
+#
+# entrada = int(input("Introduce un número del menú:"))
+#
+# while (entrada <= 2):
+#     #programa 1
+#     if (entrada == 1):
+#         #1 muestra
+#         func1 = Logger()
+#         func1.muestraLog("22222222B")
+#         break
+#
+#     if (entrada == 2):
+#         #2 añade
+#        # func2 = Log("14270390V", "05/10/2010", "4213412341", "321231")
+#         func1 = Logger()
+#         func1.addLog("14270390V", "05/10/2010", "4213412341", "321231")
+#         break

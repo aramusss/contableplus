@@ -3,16 +3,18 @@ from dataBase import *
 
 dataBase=dataBase()
 converter=converter()
-class operations:
+class Operations:
     iban=1
     inputString=''
     money_transfered=[200.00,'USD']
+    dni = ''
 
     # iban=iban
     # money_transfered=[money, currency]
-    def __init__(self, iban,money_transfered):
+    def __init__(self, iban,money_transfered, dni):
         self.iban=iban
         self.money_transfered=money_transfered
+        self.dni = dni
     #returns a list with the money and the currency
     def addMoney(self):
         converter.set_amount(self.money_transfered[0])
