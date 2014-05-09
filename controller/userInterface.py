@@ -15,32 +15,34 @@ print("Hello Worker! Welcome to ContablePlus!")
 currentUser = UserLogin(None)
 currentUser.enterLogin()
 if(currentUser.registered):
-    print("What do you want to do?")
+    print("What do you want to do? ")
     #if it have ibans select an account
     ibanList = currentUser.getIbanList()
     if ibanList:
         #list ibans
-        print("List of available accounts:")
+        print("List of available accounts: ")
         for iban in ibanList:
             print(iban)
         #select one iban, that we will be working on.
-        currentIbanOption =input("Select one IBAN:")
+        currentIbanOption =input("Select one IBAN: ")
         currentIban = ibanList[int(currentIbanOption)-1]
         #if currentIban is correct, should display options to do:
-        print("1: Show Graphics from this account")
+        print("1: Show Graphics from this account ")
         #Show graphics
-        print("2: Add or Withdraw money")
+        print("2: Add or Withdraw money ")
         #Add or withdraw money
-        print("3: Add another Owner")
+        print("3: Add another Owner ")
         #Add another owner(?)
+        print("4: Transfer money")
+
         option = input("Select an option: ")
 
         if(option == "1"):
             myTest = GraphicController()
             myTest.showGrapicWithDNI(currentIban)
         if(option == "2"):
-            money_input=input("how much money will you put?")
-            curr_input=input("and what currency is it?")
+            money_input=input("How much money will you put? ")
+            curr_input=input("And what currency is it? ")
             new_money=[float(money_input),curr_input]
             currentOwner = currentUser.getOwner()
             currentDni = currentOwner.getDni()
@@ -49,11 +51,23 @@ if(currentUser.registered):
         if(option == "3"):
             # I BET U CAN'T...
             print("other thing..")
+        if(option == "4"):
+            money_input=input("Money to transfer? ")
+            curr_input=input("Currency? ")
+            getter_money=[float(money_input),curr_input]
+            currentOwner = currentUser.getOwner()
+            currentDni = currentOwner.getDni()
+            getter_iban = input("IBAN of other account ")
+            new_money= [-float(money_input), curr_input]
+            operations_transfer1= Operations(currentIban, new_money, currentDni)
+            operations_transfer1.addMoney()
+            operations_transfer2= Operations(getter_iban, getter_money, currentDni)
+            operations_transfer2.addMoney()
     else:
-        print("Would you like to create one?")
+        print("Would you like to create one? ")
         createOne = input("Y/N: ")
         if createOne == "Y":
-            print("Lets create an account.")
+            print("Lets create an account. ")
             registerAcc = DataBase()
             currency = "EUR"
             amount = input("Insert your diposit: ")

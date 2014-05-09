@@ -18,7 +18,7 @@ class Converter:
         if(boolean):
             self.localCurrency=currency
         else:
-            print("Divisa no valida")
+            print("Currency Not Valid")
         return boolean
     def convert_to_locale(self,amount):
         boolean=False
