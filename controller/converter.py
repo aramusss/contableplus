@@ -1,5 +1,5 @@
 import urllib.request
-class converter:
+class Converter:
     localCurrency='EUR'
     amount=0.00
     currencies='../database/currencies.txt'

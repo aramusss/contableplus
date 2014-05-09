@@ -2,6 +2,7 @@ __author__ = 'aram'
 
 from userLogin import *
 from dataBase import *
+from operations import *
 import os.path, random
 
 
@@ -42,6 +43,7 @@ if(currentUser.registered):
             currentOwner = currentUser.getOwner()
             currentDni = currentOwner.getDni()
             operations= Operations(currentIban, new_money, currentDni)
+            operations.addMoney()
         if(option == "3"):
             # I BET U CAN'T...
             print("other thing..")

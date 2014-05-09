@@ -1,9 +1,10 @@
 from converter import *
 from dataBase import *
 
-dataBase=dataBase()
-converter=converter()
+
 class Operations:
+    dataBase=DataBase()
+    converter=Converter()
     iban=1
     inputString=''
     money_transfered=[200.00,'USD']
@@ -17,7 +18,7 @@ class Operations:
         self.dni = dni
     #returns a list with the money and the currency
     def addMoney(self):
-        converter.set_amount(self.money_transfered[0])
+        self.converter.set_amount(self.money_transfered[0])
         boolean=False
         true_owner_curr='EUR'
         inputString=''
@@ -26,18 +27,18 @@ class Operations:
             a=input('Y/N')
             if(a=='Y'):
                 inputString=input('input the 3 letters of the currency')
-                boolean=converter.set_locale(inputString)
+                boolean=self.converter.set_locale(inputString)
             elif(a=='N'):
-                boolean=converter.set_locale(self.money_transfered[1])
+                boolean=self.converter.set_locale(self.money_transfered[1])
             elif(a=='n'):
-                boolean=converter.set_locale(self.money_transfered[1])
+                boolean=self.converter.set_locale(self.money_transfered[1])
             elif(a=='y'):
                 inputString=input('input the 3 letters of the currency')
-                boolean=converter.set_locale(inputString)
+                boolean=self.converter.set_locale(inputString)
             else:
                 print("Wrong key")
-        self.money_transfered[0]=converter.convert_to_locale(self.money_transfered)
-        converter.set_locale('EUR')
-        self.money_transfered[0]=converter.convert_to_locale(self.money_transfered)
-        dataBase.modificaCompta(self.iban, self.money_transfered[0])
+        self.money_transfered[0]=self.converter.convert_to_locale(self.money_transfered)
+        self.converter.set_locale('EUR')
+        self.money_transfered[0]=self.converter.convert_to_locale(self.money_transfered)
+        self.dataBase.modificaCompta(self.iban, self.money_transfered[0])
         print('operation succeded')

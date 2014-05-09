@@ -159,7 +159,7 @@ class DataBase:
             for line in accounts:
                 cuenta = line.split(",")
                 if(cuenta[0] == ibanInput):
-                    cuenta[1] = str(int(cuenta[1]) + newAmount)
+                    cuenta[1] = str(float(cuenta[1]) + newAmount)
                     changedLine = ','.join(cuenta)
                     accountList.append(changedLine)
                 else:
