@@ -34,19 +34,17 @@ class Logger:
             finally:
                 files.close()
 
+
+#controlar que se introduzca un iban
     def addLog(self, dni, iban, data, saldo):
         if self.comprovaLog():
-            if dni and iban and data and saldo:
                 with open(self.file, mode='a', encoding='UTF-8') as f:
-                    f.write(dni+";"+iban+";"+data+";"+data+"\n")
-                    added = True
-            else:
-                print("Error, dni can't have empty fields")
+                    f.write(dni+";"+iban+";"+data+";"+saldo+"\n")
+                    #added = True
+                    print(dni + data)
         else:
-            print("Error! couldn't find log file")
-        return added
-
-
+            print("Error, dni can't have empty fields")
+        #return added
 
 
 entrada = 0
@@ -67,8 +65,7 @@ while (entrada < 2):
 
     if (entrada == 2):
         #2 añade
-        func2 = Log("14270390V", "05/10/2010", 4213412341, 321231)
+        func2 = Log("14270390V", "05/10/2010", "4213412341", "321231")
         func1 = Logger()
         func1.addLog(func2)
         break
-
