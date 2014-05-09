@@ -206,3 +206,24 @@ class DataBase:
                 account = a
                 break
         return account
+
+    def addOwnerAccount(self,iban,owner):
+        """Esborra un usuari al fitxer d'usuaris sense comprovar que existeixi"""
+        if self.comprovaComptes():
+            file = open(self.rutaComptes, 'r')
+            llista = file.readlines()
+            file.close()
+            trobat = False
+            with open(self.rutaComptes, 'w') as file:
+                for linia in llista:
+                    if linia.split(",")[0] != iban:
+                        file.write(linia)
+                    else:
+                        file.write(linia[:len(linia)-2]+","+owner+"\n")
+                        trobat = True
+                        print("Owner added!")
+            if not trobat:
+                print("Couldn't find the account!")
+                #error
+        else:
+            print("Error! File not found")
