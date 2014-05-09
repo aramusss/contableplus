@@ -1,13 +1,13 @@
 import urllib.request
 class converter:
     localCurrency='EUR'
-    localAmount=0.00
     amount=0.00
     currencies='../database/currencies.txt'
     def set_amount(self, money):
         self.amount=money
-    def set_localAmount(self, locAmount):
-        self.localAmount=locAmount
+
+    def get_locale(self):
+        return self.localCurrency
     def set_locale(self,currency):
         boolean=False
         with open(self.currencies, mode='r', encoding='ISO-8859-1') as file:
@@ -38,7 +38,6 @@ class converter:
                 listaentera="".join(palabras)
                 cosaquequiero="<spanclass=bld>"
                 cosaquequiero2="</span>"
-                print (listaentera)
                 numero=(listaentera.find(cosaquequiero))
                 numero2=(listaentera.find(cosaquequiero2))
                 valor=listaentera[numero+15:numero2-3]
@@ -61,9 +60,7 @@ class converter:
                 listaentera="".join(palabras)
                 cosaquequiero="<spanclass=bld>"
                 cosaquequiero2="</span>"
-                print (listaentera)
                 numero=(listaentera.find(cosaquequiero))
                 numero2=(listaentera.find(cosaquequiero2))
                 valor=listaentera[numero+15:numero2-3]
-                print (str(amount[0])+" "+str(self.localCurrency)+" son "+valor+" "+str(amount[1]))
             return valor

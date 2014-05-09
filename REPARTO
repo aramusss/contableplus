@@ -1,4 +1,4 @@
-Josué: Clases, método que haga logs y le pases (x parámetros... y lo almacene en log)
-Aram: Graficos segun el log (?).
-Victor: Método para ingresar  y sacar dinero con conversión.
-Adrià: identiicación de login y base de datos de los usuarios
+Josué: Modelos y controlador de logs para movimientos en cuentas, que se usará para los gráficos.
+Aram: Graficos por IBAN segun el log y manager del proyecto.
+Victor: Métodos para ingresar y sacar dinero con conversión de divisa automatica.
+Adrià: Identificación de login y base de datos de los usuarios y cuentas (cuentas multiusuario).

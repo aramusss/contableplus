@@ -7,4 +7,6 @@ class Owner:
 
     def muestraDatos(self):
         return [self.nombre, self.apellidos, self.dni]
+    def getDni(self):
+        return self.dni
 
