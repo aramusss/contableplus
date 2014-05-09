@@ -1,6 +1,7 @@
 from converter import *
 from dataBase import *
 
+dataBase=dataBase()
 converter=converter()
 class operations:
     iban=1
@@ -10,16 +11,17 @@ class operations:
 
     # iban=iban
     # owner_money=[float, currency]
-    # owner_curr=currency
     # money_transfered=[money, currency]
     def __init__(self, iban, owner_money,money_transfered):
         self.iban=iban
         self.owner_money=owner_money
         converter.set_localAmount(owner_money)
         self.money_transfered=money_transfered
+    #returns a list with the money and the currency
     def addMoney(self):
         converter.set_amount(self.money_transfered[0])
         boolean=False
+        true_owner_curr=self.owner_money[1]
         inputString=''
         while(not boolean):
             print('Your local currency is set to '+self.money_transfered[1]+ ' do you want to change it?')
@@ -40,3 +42,7 @@ class operations:
         self.owner_money[0]=converter.convert_to_locale(self.owner_money)
         self.owner_money[1]=converter.get_locale()
         self.owner_money[0]=float(self.money_transfered[0])+float(self.owner_money[0])
+        converter.set_locale(true_owner_curr)
+        self.owner_money[0]=converter.convert_to_locale(self.owner_money)
+        self.owner_money[1]=true_owner_curr
+        dataBase.modificaCompta(self.iban, self.owner_money[0])
