@@ -30,4 +30,4 @@ class Operations:
         self.dataBase.modificaCompta(self.iban, float(self.money_transfered[0]))
         log = Log(self.dni, self.iban, self.money_transfered[0])
         log.addLog()
-        print('operation succeded')
+        print('Operation Succeed!')
