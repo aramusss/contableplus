@@ -219,7 +219,7 @@ class DataBase:
                     if linia.split(",")[0] != iban:
                         file.write(linia)
                     else:
-                        file.write(linia[:len(linia)-2]+","+owner+"\n")
+                        file.write(linia[:len(linia)-1]+","+owner+"\n")
                         trobat = True
                         print("Owner added!")
             if not trobat:

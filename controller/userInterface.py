@@ -49,8 +49,9 @@ if(currentUser.registered):
             operations= Operations(currentIban, new_money, currentDni)
             operations.addMoney()
         if(option == "3"):
-            # I BET U CAN'T...
-            print("other thing..")
+            newOwner = input("Insert thw new owners' DNI")
+            datab = DataBase()
+            datab.addOwnerAccount(currentIban,newOwner)
         if(option == "4"):
             money_input=input("Money to transfer? ")
             curr_input=input("Currency? ")
