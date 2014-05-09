@@ -1,5 +1,5 @@
 import os.path
-
+import time
 
 class Log:
     def __init__(self, dni, iban, data, saldo):
@@ -36,14 +36,21 @@ class Logger:
 
 
 #controlar que se introduzca un iban
-    def addLog(self, dni, iban, data, saldo):
+    def addLog(self, dni, iban, saldo):
         if self.comprovaLog():
             with open(self.file, mode='a', encoding='UTF-8') as f:
+                data = time.strftime("%d/%m/%Y")
                 f.write(dni+";"+iban+";"+data+";"+saldo+"\n")
-
         else:
             print("Error, dni can't have empty fields")
         #return added
+
+
+
+func1 = Logger()
+func1.addLog("14270390V", "4213412341", "-2454")
+
+
 
 #
 # entrada = 0
