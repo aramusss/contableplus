@@ -33,6 +33,8 @@ if(currentUser.registered):
         #Add or withdraw money
         print("3: Add another Owner")
         #Add another owner(?)
+        print("4: Transfer money")
+
         option = input("Select an option: ")
 
         if(option == "1"):
@@ -49,6 +51,18 @@ if(currentUser.registered):
         if(option == "3"):
             # I BET U CAN'T...
             print("other thing..")
+        if(option == "4"):
+            money_input=input("how much money will you transfer?")
+            curr_input=input("and what currency is it?")
+            getter_money=[float(money_input),curr_input]
+            currentOwner = currentUser.getOwner()
+            currentDni = currentOwner.getDni()
+            getter_iban = input("enter the other IBAN")
+            new_money= [-float(money_input), curr_input]
+            operations_transfer1= Operations(currentIban, new_money, currentDni)
+            operations_transfer1.addMoney()
+            operations_transfer2= Operations(getter_iban, getter_money, currentDni)
+            operations_transfer2.addMoney()
     else:
         print("Would you like to create one?")
         createOne = input("Y/N: ")
