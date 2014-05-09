@@ -12,7 +12,6 @@ class UserLogin:
         self.owner = owner
         self.db = DataBase()
         self.registered = False #si l'usuari ja ha fet loguin o no
-
     def enterLogin(self):
         """Like the 'login' method, but asks for the user data to be written in the terminal"""
         self.askUserData()
@@ -116,3 +115,6 @@ class UserLogin:
                     ibanList.append(account[0])
                     break
         return ibanList
+
+    def getOwner(self):
+        return self.owner

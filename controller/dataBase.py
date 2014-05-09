@@ -124,10 +124,9 @@ class DataBase:
             list.append(a[0])
         return list
 
-    def afegeixCompta(self, iban, balance, currency, *owners):
+    def afegeixCompta(self, balance, currency, *owners):
         """Adds a new bank account, all fields are mandatory except for iban code"""
-        if not iban:
-            iban = self.getRandomIban() #creates a random iban code
+        iban = self.getRandomIban() #creates a random iban code
         added = False
         ibanExists = False
         if self.comprovaComptes():
